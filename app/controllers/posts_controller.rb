@@ -25,7 +25,9 @@ class PostsController < ApplicationController
 
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(title: params[:title], description: params[:description])
+	  @post.update(params.require(:post)) #used for hash setup
+	  # Changed from below to above because of hash set up.
+	  # @post.update(title: params[:title], description: params[:description])
 	  redirect_to post_path(@post)
 	end
 end
